@@ -6,6 +6,7 @@ import { DemoModule } from './demo/demo.module';
 import { ListModule } from './list/list.module';
 import { ConfigModule } from './config/config.module';
 import { UploadModule } from './upload/upload.module';
+import { PModule } from './p/p.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { UploadModule } from './upload/upload.module';
     ListModule,
     ConfigModule.forRoot({ path: '/zm' }),
     UploadModule,
+    PModule,
   ],
   controllers: [AppController],
   providers: [AppService],
