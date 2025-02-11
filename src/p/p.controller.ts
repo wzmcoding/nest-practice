@@ -13,13 +13,14 @@ import { PService } from './p.service';
 import { CreatePDto } from './dto/create-p.dto';
 import { UpdatePDto } from './dto/update-p.dto';
 import * as uuid from 'uuid';
+import { PPipe } from './p.pipe';
 console.log(uuid.v4(), 'uuid-v4');
 @Controller('p')
 export class PController {
   constructor(private readonly pService: PService) { }
 
   @Post()
-  create(@Body() createPDto: CreatePDto) {
+  create(@Body(PPipe) createPDto: CreatePDto) {
     return this.pService.create(createPDto);
   }
 
