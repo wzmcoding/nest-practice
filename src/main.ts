@@ -9,6 +9,7 @@ import { NestExpressApplication } from "@nestjs/platform-express";
 import { Response as ResponseInterceptor } from './common/response';
 import { HttpExceptionFilter } from './common/filter';
 import { ValidationPipe } from '@nestjs/common';
+import { RoleGuard } from './guard/role.guard';
 
 const whiteList = ['/list', '/upload/album', '/upload/export'];
 function middleWareAll(req: Request, res: Response, next: NextFunction) {
@@ -24,6 +25,7 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname,'images'), {
     prefix: '/zm',
   })
+  // app.useGlobalGuards(new RoleGuard())
   app.useGlobalInterceptors(new ResponseInterceptor())
   app.useGlobalPipes(new ValidationPipe())
   // app.useGlobalFilters(new HttpExceptionFilter())
