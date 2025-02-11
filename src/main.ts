@@ -7,7 +7,7 @@ import {Request, Response, NextFunction } from 'express';
 import { join } from "path";
 import { NestExpressApplication } from "@nestjs/platform-express";
 
-const whiteList = ['/list', '/upload/album'];
+const whiteList = ['/list', '/upload/album', '/upload/export'];
 function middleWareAll(req: Request, res: Response, next: NextFunction) {
   console.log("req.originalUrl ->", req.originalUrl);
   if(whiteList.includes(req.originalUrl)) {
