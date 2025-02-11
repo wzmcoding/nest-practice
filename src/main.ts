@@ -7,6 +7,7 @@ import {Request, Response, NextFunction } from 'express';
 import { join } from "path";
 import { NestExpressApplication } from "@nestjs/platform-express";
 import { Response as ResponseInterceptor } from './common/response';
+import { HttpExceptionFilter } from './common/filter';
 
 const whiteList = ['/list', '/upload/album', '/upload/export'];
 function middleWareAll(req: Request, res: Response, next: NextFunction) {
@@ -23,6 +24,7 @@ async function bootstrap() {
     prefix: '/zm',
   })
   app.useGlobalInterceptors(new ResponseInterceptor())
+  app.useGlobalFilters(new HttpExceptionFilter())
   // app.use(middleWareAll)
   // app.enableVersioning({
   //   type: VersioningType.URI,
