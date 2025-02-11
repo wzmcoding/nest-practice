@@ -6,6 +6,7 @@ import * as session from 'express-session';
 import {Request, Response, NextFunction } from 'express';
 import { join } from "path";
 import { NestExpressApplication } from "@nestjs/platform-express";
+import { Response as ResponseInterceptor } from './common/response';
 
 const whiteList = ['/list', '/upload/album', '/upload/export'];
 function middleWareAll(req: Request, res: Response, next: NextFunction) {
@@ -21,7 +22,8 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname,'images'), {
     prefix: '/zm',
   })
-  app.use(middleWareAll)
+  app.useGlobalInterceptors(new ResponseInterceptor())
+  // app.use(middleWareAll)
   // app.enableVersioning({
   //   type: VersioningType.URI,
   // });
