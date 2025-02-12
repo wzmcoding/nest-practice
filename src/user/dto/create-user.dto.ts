@@ -1,1 +1,5 @@
-export class CreateUserDto {}
+/* eslint-disable prettier/prettier */
+export class CreateUserDto {
+    name: string
+    desc: string
+}

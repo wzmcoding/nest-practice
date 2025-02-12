@@ -27,7 +27,7 @@ async function bootstrap() {
     prefix: '/zm',
   })
   // app.useGlobalGuards(new RoleGuard())
-  app.useGlobalInterceptors(new ResponseInterceptor())
+  // app.useGlobalInterceptors(new ResponseInterceptor())
   app.useGlobalPipes(new ValidationPipe())
   // app.useGlobalFilters(new HttpExceptionFilter())
   // app.use(middleWareAll)

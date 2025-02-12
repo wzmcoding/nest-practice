@@ -10,10 +10,14 @@ import { UserController } from './user.controller';
 import { UserService2 } from './user.service2';
 import { UserService3 } from './user.service3';
 import { Logger } from '../middleware';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './entities/user.entity';
 
 // 给 user 模块添加 @Global() 他便注册为全局模块
 @Global()
 @Module({
+  // 注册实体
+  imports: [TypeOrmModule.forFeature([User])],
   controllers: [UserController],
   // providers: [UserService],
   providers: [
