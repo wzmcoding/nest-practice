@@ -10,6 +10,7 @@ import { Response as ResponseInterceptor } from './common/response';
 import { HttpExceptionFilter } from './common/filter';
 import { ValidationPipe } from '@nestjs/common';
 import { RoleGuard } from './guard/role.guard';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 const whiteList = ['/list', '/upload/album', '/upload/export'];
 function middleWareAll(req: Request, res: Response, next: NextFunction) {
@@ -42,6 +43,9 @@ async function bootstrap() {
       原文链接：https://blog.csdn.net/qq1195566313/article/details/126327047
    */
   app.use(session({ secret: "zhengmin", name: 'zm.session', rolling: true, cookie: { maxAge: null } }));
+  const options = new DocumentBuilder().addBearerAuth().setTitle('ZM的接口文档').setDescription('描述，。。。').setVersion('1').build()
+  const document = SwaggerModule.createDocument(app,options)
+  SwaggerModule.setup('/api-docs',app,document)
   await app.listen(3000);
 }
 bootstrap();
