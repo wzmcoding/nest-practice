@@ -11,6 +11,11 @@ export class UserController {
   constructor(@Inject('ZM') private readonly userService: UserService,@Inject('JD') private shopList: string[],
   @Inject('Test') private readonly Test: any) { }
 
+  @Post('/add/tags')
+  addTags(@Body() params: { tags: string[]; userId: number }) {
+    return this.userService.addTags(params);
+  }
+
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);

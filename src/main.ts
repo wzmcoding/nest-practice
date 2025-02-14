@@ -46,6 +46,6 @@ async function bootstrap() {
   const options = new DocumentBuilder().addBearerAuth().setTitle('ZM的接口文档').setDescription('描述，。。。').setVersion('1').build()
   const document = SwaggerModule.createDocument(app,options)
   SwaggerModule.setup('/api-docs',app,document)
-  await app.listen(3000);
+  await app.listen(3001);
 }
 bootstrap();
